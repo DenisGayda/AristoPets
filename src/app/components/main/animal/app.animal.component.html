@@ -1,0 +1,59 @@
+<div *ngFor="let src of imageSrc; let i = index" >
+  <file-uploader [href]="src" [index]="i" (onLoad)="setSrc($event)"></file-uploader>
+</div>
+
+<form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
+
+    <div class="input">
+    <input type="text" name="name" ngModel class="form-control" placeholder="Name" value="{{ animal.name }}" #name>
+    <label>Name: {{ name.value }}
+     
+    </label>
+  </div>
+
+  <div class="input">
+    <input type="text" name="bread" ngModel class="form-control" placeholder="bread" value="{{ animal.bread }}" #bread>
+    <label>Bread: {{ bread.value }}
+     
+    </label>
+  </div>
+
+    <div>Sex
+      <select name="sex" ngModel class="form-control" value="{{ animal.sex }}">
+          <option>Boy</option>
+          <option>Girl</option>
+      </select>
+    </div>
+
+    <div> Sex work
+      <input type="checkbox" name="sexWork" ngModel class="form-control" value="sexWork" >
+    </div>
+
+
+  <div class="input">
+    <input type="text" name="color" ngModel class="form-control" placeholder="color" value="{{ animal.color }}" #color>
+    <label>Color: {{ color.value }}
+     
+    </label>
+  </div>
+
+   <div class="input">
+      <input type="text" name="club" ngModel class="form-control" placeholder="club" value="{{ animal.club }}" #club>
+      <label>Club: {{ club.value }}
+       
+      </label>
+    </div>
+
+    <div class="input">
+      <textarea name="description" ngModel class="form-control"> </textarea>
+
+    </div>
+  
+  <div class="form-group">
+      <button class="form-signin-heading" type="submit" >Save</button>
+  </div>
+</form>
+
+
+
+

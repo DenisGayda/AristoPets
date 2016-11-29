@@ -1,0 +1,12 @@
+<main>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 sidebar">
+				<app-sidebar [user]="user" ></app-sidebar>
+			</div>
+			<div class="col-md-9 main">
+				<app-main [user]="user" (onInited)="getUser($event)" ></app-main>
+			</div>
+		</div>
+	</div>
+</main>

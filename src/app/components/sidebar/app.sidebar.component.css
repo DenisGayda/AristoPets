@@ -1,0 +1,13 @@
+.user__photo {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	
+	border-radius: 50%;
+	overflow: hidden;
+	border: 2px solid #fff;
+}
+
+.parent__photo {
+	text-align: center;
+}

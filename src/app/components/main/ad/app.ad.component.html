@@ -1,0 +1,22 @@
+<div *ngFor="let src of ad.image; let i = index" >
+  <file-uploader [href]="src" [index]="i" (onLoad)="setSrc($event)"></file-uploader>
+</div>
+<file-uploader [index]="'new'" (onLoad)="setSrc($event)"></file-uploader>
+
+
+<form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
+  <div class="input">
+    <input type="text" name="name" ngModel class="form-control" placeholder="Имя" value="{{ ad.name }}" #name>
+    <label>Имя: {{ name.value }}
+     
+    </label>
+  </div>
+  
+  <div class="form-group">
+      <button class="form-signin-heading" type="submit" >Save</button>
+  </div>
+</form>
+
+
+
+

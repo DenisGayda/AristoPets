@@ -1,0 +1,26 @@
+<div *ngIf="animals">
+	<div  *ngFor="let animal of animals"  class="animal">
+		<ngb-carousel >
+		  <template ngbSlide *ngFor="let src of animal.image">
+		    <p class="user__photo">
+				<img src="{{ src }}" width="300" >
+			</p>
+		  </template>
+		  
+		</ngb-carousel>
+
+		<p >Bread: {{ animal.bread }}</p>
+		<p >Name: {{ animal.name }}</p>
+		<p >Sex: {{ animal.sex }}<span *ngIf="animal.sexWork"> | he can work</span>
+		</p>
+		
+		
+		<p >Color: {{ animal.color }}</p>
+		<p >Club: {{ animal.club }}</p>
+		<p class="description">Description: {{ animal.description}}</p>
+		<button type="button" class="btn btn-primary btn-sm float-xs-right" (click)="onSelect(animal)"> Edit Animal
+			
+		</button> 
+	</div>
+</div>
+

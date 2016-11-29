@@ -1,0 +1,26 @@
+<div>
+	<div class="parent__photo">
+		<p *ngIf="user.image" class="user__photo">
+			<img src="{{ user.image }}" width="150" height="150">
+		</p>
+	</div>
+	<h1 *ngIf="user.name">{{ user.name }}</h1>
+	
+	<div>
+		<a href="https://www.facebook.com/profile.php?id=100002183511941"><img src="https://www.tsu.ge/data/image_db_innova/faculty_law/facebook.png" width="20"></a>
+		<a [href]="skypeHref()" ><img src="http://www.linka-duvery.cz/userFiles/skype.png" width="20"></a>
+	</div>
+	<div>
+		<p *ngIf="user.pitomnik">{{ user.pitomnik }}</p>
+		<p *ngIf="user.club">{{ user.club }}</p>
+	</div>
+	<div>
+		<p *ngIf="user.email">{{ user.email }}</p>
+		<p *ngIf="user.number">{{ user.number }}</p>
+		<p *ngIf="user.city">{{ user.city }}</p>
+	</div>
+	<div>
+		<p *ngIf="user.bread">{{ user.bread }}</p>
+	</div>
+</div>
+
