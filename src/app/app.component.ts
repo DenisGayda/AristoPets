@@ -1,8 +1,5 @@
-import { Component, Input, OnInit} from '@angular/core';
-import { AppService } from './shared/app.service';
-import { IUser, User } from './shared/app.model';
-
-
+import {Component, OnInit} from '@angular/core';
+import {AppUserService} from './shared/app.user.service';
 
 @Component({
   selector: 'my-app',
@@ -10,33 +7,13 @@ import { IUser, User } from './shared/app.model';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
-	@Input() user: IUser;
+export class AppComponent implements OnInit {
 
+  constructor(private appUserService: AppUserService) {
+  }
 
-	constructor(private appService: AppService) {
-		this.user = {
-					id: 0,
-					name: '',
-					email: '',
-					pitomnik: '',
-					facebook: '',
-					skype: '',
-					phone: 0,
-					city: '',
-					bread: '',
-					club: '',
-					image: ''
-				};	
-	}
-
-	ngOnInit() {
-       let id = 1 ;
-       this.appService.getUserID(id).then(user => this.user = user);
-	}
-	
-	getUser(value: number): void {
-		let id = value ;
-        this.appService.getUserID(id).then(user => this.user = user);
-	}
+  ngOnInit() {
+    this.appUserService.getUsers();
+    this.appUserService.getBreeds();
+  }
 }

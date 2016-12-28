@@ -1,26 +1,66 @@
-<div>
+<!-- <div *ngIf="user">
 	<div class="parent__photo">
-		<p *ngIf="user.image" class="user__photo">
-			<img src="{{ user.image }}" width="150" height="150">
+		<p *ngIf="user.photo" class="user__photo">
+			<img [src]="user.photo" width="150" height="150">
 		</p>
 	</div>
-	<h1 *ngIf="user.name">{{ user.name }}</h1>
-	
+	<h1 *ngIf="user.firstName">{{ user.firstName }}</h1>
+	<h1 *ngIf="user.lastName">{{ user.lastName }}</h1>
+
+	<div *ngIf="user.socials">
+		<a [href]="user.socials"><img src="https://www.tsu.ge/data/image_db_innova/faculty_law/facebook.png" width="20"></a> -->
+		<!-- <a [href]="skypeHref()" ><img src="http://www.linka-duvery.cz/userFiles/skype.png" width="20"></a> -->
+<!-- 	</div>
 	<div>
-		<a href="https://www.facebook.com/profile.php?id=100002183511941"><img src="https://www.tsu.ge/data/image_db_innova/faculty_law/facebook.png" width="20"></a>
-		<a [href]="skypeHref()" ><img src="http://www.linka-duvery.cz/userFiles/skype.png" width="20"></a>
-	</div>
-	<div>
-		<p *ngIf="user.pitomnik">{{ user.pitomnik }}</p>
+		<p *ngIf="user.nursery">{{ user.nursery }}</p>
 		<p *ngIf="user.club">{{ user.club }}</p>
 	</div>
 	<div>
 		<p *ngIf="user.email">{{ user.email }}</p>
-		<p *ngIf="user.number">{{ user.number }}</p>
-		<p *ngIf="user.city">{{ user.city }}</p>
+		<p *ngIf="user.phoneNumber">{{ user.phoneNumber }}</p>
 	</div>
 	<div>
-		<p *ngIf="user.bread">{{ user.bread }}</p>
+		<span *ngIf="user.contractOfSale"> | contractOfSale</span>
 	</div>
-</div>
+</div> -->
 
+<div class="sideBar" *ngIf="user">
+	<div class="sidebar_breeder">
+		<img *ngIf="user.photo" class="sidebar_breeder_img" [src]="user.photo" alt="breeder_photo">
+		<h2 class="sidebar_breeder_name">
+			<span *ngIf="user.firstName">{{ user.firstName }}</span> 
+			<span *ngIf="user.lastName">{{ user.lastName }}</span></h2>
+		<div class="sidebar_icons">
+			<a href="#"><i class="fa fa-facebook  fa-inverse" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-skype  fa-inverse" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-whatsapp fa-inverse" aria-hidden="true"></i></a>
+		</div>
+	</div>
+	<div class="sidebar_club">
+		<a href="#" *ngIf="user.nursery"><i class="icoLine icon-mustache"></i>
+			<span class="sidebar_club_text">{{ user.nursery }}</span>
+		</a>
+		<a *ngIf="user.club" href="#"><i class="icoLine icon-briefcase" ></i>
+			<span class="sidebar_club_text">{{ user.club }}</span>
+		</a>
+	</div>
+	<div class="sidebar_info">
+		<a *ngIf="user.email" href="#"><i class="icoLine icon-envelope"></i>
+			<span class="sidebar_info_text">{{ user.email }}</span>
+		</a>
+		<a href="#"><i class="icoLine icon-phone" ></i>
+			<span *ngIf="user.phoneNumber" class="sidebar_info_text">{{ user.phoneNumber }}</span>
+		</a>	
+		<!-- <a href="#"><i class="icoLine icon-location-pin"></i><span class="sidebar_info_text">Odessa, Ukraine</span></a> -->
+		<!-- <a  href="#"><i class="icoLine icon-doc" ></i><span class="sidebar_info_text">Dogovor</span><br /><span class="sidebar_info_text-mod">скачать</span></a> -->
+	</div>
+	<<!-- div class="sidebar_dogBreeds">
+		<h2 class="sidebar_dogBreeds_h">Dogs Breeds Dmitry</h2>
+		<ul class="sidebar_dogBreeds_list">
+			<li class="sidebar_dogBreeds_item">Yorkshire Terrier</li>
+			<li class="sidebar_dogBreeds_item">French Bulidog</li>
+			<li class="sidebar_dogBreeds_item"> Caucasian Shepherd Dog</li>
+		</ul>
+		
+	</div> -->
+</div>

@@ -1,106 +1,63 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
-import { User } from '../../../shared/app.model';
-import { AppService } from '../../../shared/app.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AppComponent } from '../../../app.component';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../shared/app.model';
+import {AppUserService} from '../../../shared/app.user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
   selector: 'app-user-data',
   templateUrl: './app.user-data.component.html',
   styleUrls: ['./app.user-data.component.css'],
-  inputs:['activeColor','baseColor','overlayColor']
+  inputs: ['activeColor', 'baseColor', 'overlayColor']
 })
 
 export class AppUserComponent implements OnInit {
-    user: User;
-     @Output() onInited: EventEmitter<Number>;
+  private user: User;
 
-    appService: AppService;
 
-    loaded: boolean = false;
-    imageLoaded: boolean = false;
-    imageSrc: string = '';
+  constructor(private appUserService: AppUserService,
+              private router: Router) {
 
-    
-    
-    constructor(appService: AppService, private route: ActivatedRoute, private router: Router ) {
-
-        this.onInited = new EventEmitter<Number>();
-        this.appService = appService;
-        this.user = {
-                    id: 0,
-                    name: '',
-                    email: '',
-                    pitomnik: '',
-                    facebook: '',
-                    skype: '',
-                    phone: NaN,
-                    city: '',
-                    bread: '',
-                    club: '',
-                    image: ''
-                };
-        }
-
-    handleImageLoad() {
-        this.imageLoaded = true;
+    this.user = {
+      userType: '',
+      lastName: '',
+      firstName: '',
+      email: '',
+      photo: '',
+      club: '',
+      nursery: '',
+      phoneNumber: '',
+      socials: '',
+      contractOfSale: false
     }
-    
-    handleInputChange(event: any) {
-        var file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
-        var pattern = /image-*/;
-        var reader = new FileReader();
+  }
 
-        if (!file.type.match(pattern)) {
-            alert('invalid format');
-            return;
-        }
 
-        this.loaded = false;
+  ngOnInit() {
+    this.appUserService.user.subscribe(res => {
+      this.user = res
+    });
+  }
 
-        reader.onload = this._handleReaderLoaded.bind(this);
-        reader.readAsDataURL(file);
-    }
-    
-    _handleReaderLoaded(event: any) {
-        var reader = event.target;
-        this.imageSrc = reader.result;
-        this.loaded = true;
-    }
-        
+  setSrc(event: any) {
+    this.user.photo = event.href;
+  }
 
-    ngOnInit() {
-        let id = 1;
- 
-        this.appService.getUserID(id).then(user => this.user = user);
-    }
+  toggle(value: any): boolean {
+    console.log(`+${value.phoneNumber.replace(/\D/g, "")}`);
+    debugger;
+    this.user.lastName = value.lastName ? value.lastName : this.user.lastName;
+    this.user.userType = value.userType ? value.userType : this.user.userType;
+    this.user.firstName = value.firstName ? value.firstName : this.user.firstName;
+    this.user.club = value.club ? value.club : this.user.club;
+    this.user.email = value.email ? value.email : this.user.email;
+    this.user.nursery = value.nursery ? value.nursery : this.user.nursery;
+    this.user.phoneNumber = value.phoneNumber ? value.phoneNumber : this.user.phoneNumber;
+    this.user.socials = value.socials;
+    this.user.contractOfSale = value.contractOfSale ? value.contractOfSale : this.user.contractOfSale;
 
-    saveUser(value: User): void {
-        this.user.name = value.name ? value.name : this.user.name;
-        this.user.city = value.city ? value.city : this.user.city;
-        this.user.bread = value.bread ? value.bread : this.user.bread;
-        this.user.club = value.club ? value.club : this.user.club;
-        this.user.image = value.image ? value.image : this.user.image;
-        this.user.skype = value.skype ? value.skype : this.user.skype;
-        this.user.phone = value.phone ? value.phone : this.user.phone;
-        this.user.pitomnik = value.pitomnik ? value.pitomnik : this.user.pitomnik;
-        this.user.email = value.email ? value.email : this.user.email;
+    this.appUserService.updateUser(this.user).subscribe(() => this.router.navigate(['']));
 
-        this.appService.saveUser(this.user).then(value => console.log(value));
-    }
-    
-
-    toggle(event: any, value: any ) {
-        let id = 1;
-        value.image = this.imageSrc;
-        event.preventDefault();
-        this.saveUser(value);
-        this.onInit(id)
-        this.router.navigate([''])
-    } 
-    onInit(id: number) {
-      this.onInited.emit(id);
-    }
+    return false;
+  }
 }

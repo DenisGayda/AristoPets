@@ -38,9 +38,6 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw'
-      },
-      {
-        test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery'
       }
     ]
   },
@@ -52,12 +49,6 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-
-    new ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery'
     })
   ]
 };

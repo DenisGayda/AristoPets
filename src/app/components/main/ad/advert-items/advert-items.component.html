@@ -1,0 +1,43 @@
+<div class="animal_wrap">
+    <div class="animal_uploader">
+        <file-uploader class="eachImgUploader" [href]="item.photos[0]" (onLoad)="setSrc($event)" [type]="'advert'"></file-uploader>
+    </div>
+    <div class="animal_form">
+        <form [formGroup]="complexForm" (ngSubmit)="toggle(complexForm.value)">
+
+            <div class="form_item">
+                <label class="form_label">Gender:</label>
+                <select name="gender" [formControl]="complexForm.controls['gender']" class="form_field form_field-mod" value="item.gender" required>
+                    <option>MALE</option>
+                    <option>FEMALE</option>
+                </select>
+            </div>
+
+            <div class="form_item">
+                <label class="form_label">State:</label>
+                <select name="state" [formControl]="complexForm.controls['state']" class="form_field form_field-mod" value="item.state" required>
+                    <option>FOR_SALE</option>
+                    <option>SOLD</option>
+                    <option>RESERVED</option>
+                </select>
+            </div>
+
+            <div  class="form_item">
+                <label class="form_label">Price:</label>
+                <input type="number" name="price" [formControl]="complexForm.controls['price']" class="form_field" placeholder="price"
+                       value="item.price" required>
+                
+            </div>
+
+            <div  class="form_item">
+                <label class="form_label">Color:</label>
+                <input type="text" name="color" [formControl]="complexForm.controls['color']" class="form_field" placeholder="color"
+                       value="item.color" #color required>               
+            </div>
+
+            <div class="form_item">
+                <button class="form-submit" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

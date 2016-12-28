@@ -1,59 +1,78 @@
-<div *ngFor="let src of imageSrc; let i = index" >
-  <file-uploader [href]="src" [index]="i" (onLoad)="setSrc($event)"></file-uploader>
+<div class="animal_wrap">
+    <div class="animal_uploader">
+        <file-uploader  class="eachImgUploader" [index]="'new'" [type]="'animal'" (onLoad)="setSrc($event)"></file-uploader>
+        <div class="animal_uploader" *ngFor="let src of animal.photos; let i = index">
+            <file-uploader class="eachImgUploader" [href]="src" [index]="i" [type]="'animal'" (onLoad)="setSrc($event)"></file-uploader>
+        </div>
+    </div>
+    <div class="animal_form">
+        <form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
+            <div class="form_item">
+                <label class="form_label">Name: {{ animal.name }}</label>
+                <input class="form_field" type="text" name="name" ngModel
+                       placeholder="Name" #name required>
+            </div>
+            <div class="form_item">
+                <label class="form_label">Birthday: {{ animal.birthday }}</label>
+                <input class="form_field" type="date" name="birthday" ngModel class="form-control"
+                       placeholder="birthday" #birthday required>
+            </div>
+            <div class="form_item">
+                <label class="form_label">Gender: {{ animal.gender }}</label>
+                <select name="gender" ngModel class="form_field form_field-mod" required>
+                    <option>MALE</option>
+                    <option>FEMALE</option>
+                </select>
+            </div>
+            <div class="form_item">
+                <label class="form_label">nursery: {{ animal.nursery }}</label>
+                <input type="text" name="nursery" ngModel class="form_field"
+                       placeholder="nursery" #nursery required>
+            </div>
+            <div class="form_item">
+                <label class="form_label">Titles: {{ animal.titles }}</label>
+                <input type="text" name="titles" ngModel class="form_field" placeholder="titles" #titles>
+            </div>
+            <div class="form_item">
+                <label class="form_label form_label-mod">Ready To Copulation</label>
+                <input type="checkbox" name="readyToCopulation" ngModel class="form_field-checkbox">
+            </div>
+            <div class="form_item">
+                <input type="text" list="breedsList" name="breedId" class="form_field"
+                       autocomplete="off"
+                       required
+                       ngModel
+                       (focus)="breed.value = ''"
+                       #breed
+                >
+
+                <datalist id="breedsList" *ngIf="breed.value" [ngStyle]="{'max-height': '150px'}">
+                    <option *ngFor="let item of breeds">
+                        <p>{{ item.name }}</p>
+                    </option>
+                </datalist>
+            </div>
+            <div class="form_item">
+                <label class="form_label">More Info</label>
+                <textarea name="moreInfo" ngModel class="form_field form_textarea"> </textarea>
+            </div>
+            <div class="form_item">
+                <label class="form_label">Color: {{ animal.color }}</label>
+                <input type="text" name="color" ngModel class="form_field"
+                       placeholder="color" #color required>
+
+            </div>
+            <div class="form_item">
+                <label class="form_label">Club: {{ animal.club }}</label>
+                <select name="club" ngModel class="form_field form_field-mod">
+                    <option>KSU</option>
+                    <option>KKU</option>
+                    <option>RKF</option>
+                </select>
+            </div>
+            <div class="form_item">
+                <button class="form-signin-heading" type="submit">Save</button>
+            </div>
+         </form>
+    </div>
 </div>
-
-<form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
-
-    <div class="input">
-    <input type="text" name="name" ngModel class="form-control" placeholder="Name" value="{{ animal.name }}" #name>
-    <label>Name: {{ name.value }}
-     
-    </label>
-  </div>
-
-  <div class="input">
-    <input type="text" name="bread" ngModel class="form-control" placeholder="bread" value="{{ animal.bread }}" #bread>
-    <label>Bread: {{ bread.value }}
-     
-    </label>
-  </div>
-
-    <div>Sex
-      <select name="sex" ngModel class="form-control" value="{{ animal.sex }}">
-          <option>Boy</option>
-          <option>Girl</option>
-      </select>
-    </div>
-
-    <div> Sex work
-      <input type="checkbox" name="sexWork" ngModel class="form-control" value="sexWork" >
-    </div>
-
-
-  <div class="input">
-    <input type="text" name="color" ngModel class="form-control" placeholder="color" value="{{ animal.color }}" #color>
-    <label>Color: {{ color.value }}
-     
-    </label>
-  </div>
-
-   <div class="input">
-      <input type="text" name="club" ngModel class="form-control" placeholder="club" value="{{ animal.club }}" #club>
-      <label>Club: {{ club.value }}
-       
-      </label>
-    </div>
-
-    <div class="input">
-      <textarea name="description" ngModel class="form-control"> </textarea>
-
-    </div>
-  
-  <div class="form-group">
-      <button class="form-signin-heading" type="submit" >Save</button>
-  </div>
-</form>
-
-
-
-

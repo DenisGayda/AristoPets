@@ -64,3 +64,60 @@
 .uploader img.loaded {
   opacity: 1;
 }
+
+/*start*/
+.animal_wrap{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+.animal_uploader{
+  width: 100%
+}
+.animal_form{
+  width: 65%;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+.form_field{
+  width: 90%;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+}
+.form_field-mod{
+  width: 100%;
+}
+.form_label{
+  display: block;
+  color: #478BA7;
+  font-size: 14px; 
+}
+.form_label-mod{
+  display:  inline;
+}
+.form_field-checkbox{
+
+}
+.form-submit{
+  padding: 15px 25px;
+  color: #ffffff;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+  background: #196F73;
+  border: none;
+  cursor: pointer;
+
+}
+.form_item{
+  margin-bottom: 20px;
+  height: 100%;
+}
+.form_textarea{
+  resize: none;
+}
+.eachImgUploader{
+  display: inline-block;    
+  margin-top: 20px;
+  margin-left: 10px;
+}

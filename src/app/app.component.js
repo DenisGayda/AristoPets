@@ -8,27 +8,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var app_service_1 = require('./shared/app.service');
+var core_1 = require("@angular/core");
+var app_user_service_1 = require("./shared/app.user.service");
 var AppComponent = (function () {
-    function AppComponent(appService) {
-        this.user = { id: 0, name: '', club: '', city: '', bread: '' };
-        this.appService = appService;
-        this.id = 1;
+    function AppComponent(appUserService) {
+        this.appUserService = appUserService;
     }
     AppComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.appService.getUser(this.id).then(function (user) { return _this.user = user; });
+        this.appUserService.getUsers();
+        this.appUserService.getBreeds();
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app.component.html',
-            styleUrls: ['./app.component.css']
-        }), 
-        __metadata('design:paramtypes', [app_service_1.AppService])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    }),
+    __metadata("design:paramtypes", [app_user_service_1.AppUserService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

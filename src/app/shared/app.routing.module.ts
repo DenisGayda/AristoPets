@@ -9,7 +9,7 @@ import { AppHomeComponent } from '../components/main/home/app.home.component';
 import { AppAdsComponent } from '../components/main/ads/app.ads.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/home', pathMatch: 'full'},
+	{ path: '',	redirectTo: '/home', pathMatch: 'full'},
 	{ path: '', component: AppMainComponent }
 ];
 
@@ -17,7 +17,7 @@ const child: Routes = [
 	{ path: '', children: [
 		{ path: 'home', component: AppHomeComponent },
 		{ path: 'ads', component: AppAdsComponent },
-    	{ path: 'user', component: AppUserComponent },
+    { path: 'user', component: AppUserComponent },
 		{ path: 'animal', component: AppAnimalComponent },
 		{ path: 'animal/:id', component: AppAnimalComponent },
 		{ path: 'ad', component: AppAdComponent },

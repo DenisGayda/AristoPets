@@ -1,9 +1,9 @@
 <div *ngIf="ads">
 	<div  *ngFor="let ad of ads"  class="ad">
 		<ngb-carousel >
-		  <template ngbSlide *ngFor="let src of ad.image">
+		  <template ngbSlide *ngFor="let src of ad.photos">
 		    <p class="user__photo">
-				<img src="{{ src }}" width="300" >
+				<img [src]="src" width="300" >
 			</p>
 		  </template>
 		  
@@ -12,18 +12,27 @@
 
 		
 
-		<p >Bread: {{ ad.bread }}</p>
-		<p >Name: {{ ad.name }}</p>
-		<p >Sex: {{ ad.sex }}<span *ngIf="ad.sexWork"> | he can work</span>
-		</p>
-		
-		
-		<p >Color: {{ ad.color }}</p>
-		<p >Club: {{ ad.club }}</p>
+		<p >birthday: {{ ad.birthday }}</p>
+		<p >fParentRef: {{ ad.fParentRef }}</p>
+		<p >mParentRef: {{ ad.mParentRef }}</p>
+		<p >club: {{ ad.club }}</p>
+		<p >firstVaccination: {{ ad.firstVaccination }}</p>
+		<p >secondVaccination: {{ ad.secondVaccination }}</p>
+
 		<p class="description">Description: {{ ad.description}}</p>
-		<button type="button" class="btn btn-primary btn-sm float-xs-right" (click)="onSelect(ad)"> Edit Ad
-			
-		</button> 
+
+
+		<div *ngFor="let item of ad.advertItems">
+			<img [src]="item.photos[0]" width="100" >
+			<p>{{item.gender}}</p>
+			<p>{{item.state}}</p>
+			<p>{{item.price}}</p>
+		</div>
+		<button type="button" class="btn btn-primary btn-sm float-xs-right"
+				(click)="onSelect(ad)"> Edit Advert
+		</button>
+		<button type="button" class="btn btn-danger btn-sm float-xs-right"
+				(click)="onDelete(ad.id)"> Delete Advert
+		</button>
 	</div>
 </div>
-

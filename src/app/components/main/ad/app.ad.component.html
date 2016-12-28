@@ -1,22 +1,87 @@
-<div *ngFor="let src of ad.image; let i = index" >
-  <file-uploader [href]="src" [index]="i" (onLoad)="setSrc($event)"></file-uploader>
+
+<div class="animal_wrap">
+  <div class="animal_uploader">
+    <file-uploader class="eachImgUploader" [index]="'new'" [type]="'advert'" (onLoad)="setSrc($event)"></file-uploader>
+    <div *ngFor="let src of ad.photos; let i = index" class="eachImgUploader">
+      <file-uploader [href]="src" [index]="i" [type]="'advert'" (onLoad)="setSrc($event)"></file-uploader>
+    </div>    
+  </div>
+    <div class="animal_form">
+    <form #form="ngForm" (ngSubmit)="toggle(form.value)">
+      <div class="form_item">
+        <label class="form_label">Title: {{ ad.title }}</label>
+        <input type="text" name="title" ngModel class="form_field" placeholder="title"  #title>        
+      </div>
+
+    <div class="form_item">
+      <label class="form_label">Father: {{ ad.fParentRef }}</label>
+      <input type="text" name="fParentRef" ngModel class="form_field" placeholder="fParentRef" #fParentRef>      
+    </div>
+
+      <div class="form_item">
+        <label class="form_label">Mother: {{ ad.fParentRef }}</label>
+        <input type="text" name="mParentRef" ngModel class="form_field" placeholder="mParentRef" #mParentRef>       
+      </div>
+
+      <div class="form_item">
+        <label class="form_label">Birthday: {{ ad.birthday }}</label>
+        <input type="date" name="birthday" ngModel class="form_field" placeholder="birthday" #birthday>       
+      </div>
+      <div class="form_item">
+        <label class="form_label">Club</label>
+        <select name="club" ngModel class="form_field form_field-mod" >
+          <option>KSU</option>
+          <option>KKU</option>
+          <option>RKF</option>
+        </select>
+      </div>
+
+      <div class="form_item">
+        <input type="text" list="breedsList" name="breedId" class="form_field"
+               autocomplete="off"
+               required
+               ngModel
+               (focus)="breed.value = ''"
+               #breed
+        >
+
+        <datalist id="breedsList" *ngIf="breed.value" [ngStyle]="{'max-height': '150px'}">
+          <option *ngFor="let item of breeds" selected>{{ item.name }}</option>
+        </datalist>
+      </div>
+
+
+      <div class="form_item">
+        <label class="form_label">Description</label>
+        <textarea name="description" ngModel class="form_field form_textarea"> </textarea>
+      </div>
+        <div class="form_item">
+          <label class="form_label">First vaccination: {{ ad.firstVaccination }}</label>
+          <input type="text" name="firstVaccination" ngModel class="form_field" placeholder="firstVaccination" #firstVaccination>
+          
+        </div>
+
+        <div class="form_item">
+          <label class="form_label">Second vaccination: {{ ad.secondVaccination }}</label>
+          <input type="text" name="secondVaccination" ngModel class="form_field" placeholder="secondVaccination" #secondVaccination>
+          
+        </div>
+
+      <div class="form_item">
+          <button  type="submit" class="form-submit" >Save</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="animal_form">
+    <div *ngFor="let item of ad.advertItems; let i = index" class="item">
+      <img [src]="item.photos[0]" width="100" >
+      <p>{{item.gender}}</p>
+      <p>{{item.state}}</p>
+      <p>{{item.price}}</p>
+    </div>
+  </div>
+   <div class="animal_uploader">    
+  </div>
 </div>
-<file-uploader [index]="'new'" (onLoad)="setSrc($event)"></file-uploader>
-
-
-<form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
-  <div class="input">
-    <input type="text" name="name" ngModel class="form-control" placeholder="Имя" value="{{ ad.name }}" #name>
-    <label>Имя: {{ name.value }}
-     
-    </label>
-  </div>
-  
-  <div class="form-group">
-      <button class="form-signin-heading" type="submit" >Save</button>
-  </div>
-</form>
-
-
-
-
+<adverts-item [index]="'new'" (onLoad)="setItem($event)"></adverts-item>

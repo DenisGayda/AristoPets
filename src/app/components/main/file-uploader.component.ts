@@ -1,4 +1,5 @@
 import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
+import { AppUserService } from '../../shared/app.user.service';
 
 @Component({
     selector: 'file-uploader',
@@ -9,6 +10,7 @@ import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
 export class FileUploaderComponent implements OnInit {
     @Output() onLoad: EventEmitter<any>;
     @Input() href: string;
+    @Input() type: string;
     @Input() index: any;   
     
 
@@ -25,12 +27,12 @@ export class FileUploaderComponent implements OnInit {
     imageLoaded: boolean = false;
     imageSrc: string = '';
 
-    constructor() {
+    constructor(private appUserService: AppUserService) {
         this.onLoad = new EventEmitter<any>();
     }
     
     ngOnInit(){
- 
+        this.imageSrc = ''
     }
 
     handleDragEnter() {
@@ -69,15 +71,14 @@ export class FileUploaderComponent implements OnInit {
     }
     
     _handleReaderLoaded(event: any) {
-        var reader = event.target;
+        let reader = event.target;
         this.imageSrc = reader.result;
         this.loaded = true;
-        var value = {
-            href: reader.result,
-            index: this.index
-        };
-        this.onLoad.emit(value);
+
+        this.appUserService.addPhoto(reader.result, `${this.type}/` )
+          .subscribe(res => this.onLoad.emit({href: res, index: this.index} ));
         this.imageSrc = ''
+
     }
     
     _setActive() {

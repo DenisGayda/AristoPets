@@ -1,8 +1,22 @@
-/* File Uploader Styles  */
+nav{
+	display: flex;
+	justify-content: space-between;
+}
 
 
+.button{
+	padding: 10px 25px;
+	background: #E8F0F1;
+	outline: none;
+	border: none;
+}
+.button:hover{
+	background: #DAE2E3;
+}
+.button a{
+	color: #478B8F;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
 
-.button__link {
-  font-size: 18px;
-  color: #fff;
 }

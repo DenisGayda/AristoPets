@@ -11,3 +11,169 @@
 .parent__photo {
 	text-align: center;
 }
+
+.sideBar {
+  max-width: 240px;
+  min-height: 924px;
+  height: 100vh;
+  //background: #000000;
+  //position: fixed;
+  transition: margin-top .8s;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+
+@media (max-width: 950px) {
+  .sideBar {
+    max-width: 25%; } }
+
+.sidebar_breeder {
+  width: 100%;
+  height: 237px;
+  border-bottom: 1px solid #515151;
+  position: relative;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+
+.sidebar_breeder_img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+      -ms-transform: translate(-50%);
+          transform: translate(-50%);
+  margin-top: 25px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+
+.sidebar_breeder_name {
+  font-family: AvenirNext;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 5.56;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  top: 125px;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+
+.sidebar_icons {
+  position: relative;
+  top: 100px;
+  left: 35%; }
+  .sidebar_icons a {
+    text-decoration: none;
+    color: #fff; }
+
+.fa-skype, .fa-whatsapp {
+  margin-left: 10px; }
+
+.sidebar_club {
+  width: 100%;
+  border-bottom: 1px solid #515151; }
+  .sidebar_club a {
+    text-decoration: none;
+    display: block;
+    color: #828282;
+    padding-left: 15px;
+    letter-spacing: 1.5px;
+    padding-bottom: 15px; }
+    .sidebar_club a:first-child {
+      padding-top: 15px; }
+
+.icoLine:before {
+  margin-right: 10px; }
+
+.sidebar_club_text {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 1.5px;
+  text-align: left;
+  color: #D1D1D1;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+  .sidebar_club_text:hover {
+    color: #EBEBEB; }
+
+.sidebar_info {
+  width: 100%;
+  border-bottom: 1px solid #515151;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+  .sidebar_info a {
+    text-decoration: none;
+    display: block;
+    color: #828282;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    letter-spacing: 1.5px; }
+    .sidebar_info a:first-child {
+      padding-top: 15px; }
+
+.sidebar_info_text {
+  width: 123px;
+  font-family: AvenirNext;
+  font-size: 14px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 1.5px;
+  text-align: left;
+  color: #828282;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+  .sidebar_info_text:hover {
+    color: #A9A9A9; }
+
+.sidebar_info_text-mod {
+  font-family: LucidaGrande;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  margin-left: 27px;
+  color: #006064; }
+
+.sidebar_dogBreeds_h {
+  font-family: AvenirNext;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.79;
+  letter-spacing: 1.5px;
+  text-align: left;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+  .sidebar_dogBreeds_h:hover {
+    font-weight: 600; }
+
+.sidebar_dogBreeds_list {
+  list-style-type: none;
+  margin-left: 17%;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+
+.sidebar_dogBreeds_item {
+  display: inline-block;
+  font-family: AvenirNext;
+  font-size: 12px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.79;
+  letter-spacing: 1.5px;
+  text-align: left;
+  color: #676767;
+  text-decoration: underline;
+  cursor: pointer;
+  box-shadow: inset 0 3px 20px 0 rgba(0, 0, 0, 0.17); }
+  .sidebar_dogBreeds_item:hover {
+    color: #A9A9A9; }

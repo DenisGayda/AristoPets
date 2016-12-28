@@ -1,80 +1,57 @@
+<div class="animal_wrap">
+  <div class="animal_uploader">
+    <file-uploader class="uploaderPhoto" [href]="user.photo" (onLoad)="setSrc($event)"></file-uploader>
+  </div>
+  <div class="animal_form">
+    <form  #form="ngForm" (ngSubmit)="toggle(form.value)">
+      <div class="form_item">
+        <label class="form_label">Last Name: {{ lastName.value ? lastName.value : user.lastName }}</label>
+        <input type="text" name="lastName" ngModel class="form_field" placeholder="lastName" value="{{ user.lastName }}" #lastName>        
+      </div>
 
-<form #form="ngForm" (ngSubmit)="toggle($event, form.value)">
-
-  <label class="uploader" ondragover="return false;"
-    [class.loaded]="loaded" 
-    (drop)="handleDrop($event)">
-    
+      <div class="form_item">
+        <label class="form_label">First Name: {{ firstName.value ? firstName.value : user.firstName }}</label>
+        <input type="text" name="firstName" ngModel class="form_field" placeholder="firstName" value="{{ user.firstName }}" #firstName>        
+      </div>
+    <!-- 
+      <div >
+        <input type="text" name="skype" ngModel class="" placeholder="Skype nikname" #skype>
+       <label>Skype: {{ skype.value ? skype.value : user.skype }}
        
-    <img 
-        [src]="imageSrc" 
-        (load)="handleImageLoad()" 
-        [class.loaded]="imageLoaded"/>
-    
-    <input class="form-control" type="file" name="file" accept="image/*" ngModel  (change)="handleInputChange($event)" #image>
-</label>
-
-  <div class="input">
-    <input type="text" name="name" ngModel class="form-control" placeholder="Name" value="{{ user.name }}" #name>
-    <label>Name: 
-     
-    </label>
+       </label>
+      </div> -->
+      
+      <div class="form_item">
+        <label class="form_label">Facebook: {{ fb.value ? fb.value : user.socials }}</label>
+        <input type="text" name="FBlink" ngModel class="form_field" placeholder="Facebook link" #fb>       
+      </div>
+      <div class="form_item">
+        <label class="form_label">Nursery: {{ nursery.value ? nursery.value : user.nursery }}</label>
+        <input type="text" name="nursery" ngModel class="form_field" placeholder="Nursery" #nursery>        
+      </div>
+      <div class="form_item">
+        <label class="form_label">Club</label>
+        <select name="club" ngModel class="form_field form_field-mod" >
+          <option>KSU</option>
+          <option>KKU</option>
+          <option>RKF</option>
+        </select>
+      </div>
+      <div class="form_item">
+        <label class="form_label">Email: {{ email.value ? email.value : user.email }}</label>
+        <input type="email" name="email" ngModel class="form_field" placeholder="Email" #email>       
+      </div>
+      <div class="form_item">
+        <label class="form_label">Phone number: {{ phoneNumber.value ? phoneNumber.value : user.phoneNumber }}</label>
+        <input type="tel" name="phoneNumber" ngModel class="form_field" placeholder="Phone number" #phoneNumber>
+     </div>
+      <div class="form_item"> 
+        <label class="form_label form_label-mod">Contract Of Sale</label>
+        <input type="checkbox" name="contractOfSale" ngModel class="form_field-checkbox" value="contractOfSale" >
+      </div>
+      <div class="form_item">
+          <button class="form-submit" type="submit" >Save</button>
+      </div>
+  </form>
   </div>
-
-  <div class="input">
-    <input type="text" name="skype" ngModel class="form-control" placeholder="Skype nikname" #skype>
-   <label>Skype: {{ skype.value ? skype.value : user.skype }}
-   
-   </label>
-  </div>
-
-  <div class="input">
-    <input type="text" name="pitomnik" ngModel class="form-control" placeholder="Pitomnik" #pitomnik>
-    <label>Pitomnik: {{ pitomnik.value ? pitomnik.value : user.pitomnik }}
-     
-    </label>
-  </div>
-
-
-  <div class="input">
-    <input type="text" name="club" ngModel class="form-control" placeholder="Club" #club>
-    <label>Club: {{ club.value ? club.value : user.club }}
-     
-    </label>
-  </div>
-
-  <div class="input">
-    <input type="email" name="email" ngModel class="form-control" placeholder="Email" #email>
-   <label>Email: {{ email.value ? email.value : user.email }}
-   
-   </label>
-  </div>
-  
-
-  <div class="input">
-    <input type="tel" name="phone" ngModel class="form-control" placeholder="Phone number" #phone>
-   <label>Phone: {{ phone.value ? phone.value : user.phone }}
-   
-   </label>
-  </div>
-
-  <div class="input">
-    <input type="text" name="city" ngModel class="form-control" placeholder="City" #city>
-    <label>City: {{ city.value ? city.value : user.city }}
-     
-    </label>
-  </div>
-  
-  <div class="input">
-    <input type="text" name="bread" ngModel  class="form-control" placeholder="Ваши породы" #bread>
-   <label>Breads: {{ bread.value ? bread.value : user.bread  }}
-   
-   </label>
-  </div>
-  <div class="form-group">
-      <button class="form-signin-heading" type="submit" >Save</button>
-  </div>
-</form>
-
-
-
+</div>

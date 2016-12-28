@@ -1,96 +1,81 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
-import { Animal } from './app.animal.model';
-import { AppAnimalService } from './app.animal.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AppComponent } from '../../../app.component';
-import { FileUploaderComponent } from '../file-uploader.component'
+import {Component, OnInit } from '@angular/core';
+import {Animal, Breed} from '../../../shared/app.model';
+import {AppUserService} from '../../../shared/app.user.service';
+import {Router, ActivatedRoute} from '@angular/router';
+
+
 
 
 @Component({
   selector: 'app-animal',
   templateUrl: './app.animal.component.html',
   styleUrls: ['./app.animal.component.css'],
-  inputs:['activeColor','baseColor','overlayColor']
 })
 
 export class AppAnimalComponent implements OnInit {
-	animal: Animal;
-    appAnimalService: AppAnimalService;
-
-    imageSrc: string[];
-    
-    constructor( appAnimalService: AppAnimalService,
-                 private router: Router,
-                 private route: ActivatedRoute
-                ) {
-        this.animal = {
-            id: 0,
-            idUser: 1,
-            name: '',
-            image: [],
-            bread: '',
-            sex: '',
-            sexWork: false,
-            color: '',
-            club: '',
-            description: ''
-        };
-        this.appAnimalService = appAnimalService;
-        this.imageSrc = this.animal.image.slice();
-        this.imageSrc.length += 1;
-	}
+  animals: any;
+  animal: Animal;
+  breeds: Breed[];
 
 
-    ngOnInit() {
-        let id = this.route.snapshot.params['id'] || 0;
-        if(id) {
-           this.appAnimalService.getAnimalID(id)
-               .then(animal => this.animal = animal)
-               .then(res => this.imageSrc = this.animal.image.slice())
-               .then(() => this.imageSrc.length += 1);
-        }
+  constructor(private appUserService: AppUserService,
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.animal = {
+      name: '',
+      birthday: '',
+      club: '',
+      gender: '',
+      photos: [],
+      nursery: '',
+      readyToCopulation: false,
+      titles: [],
+      color: '',
+      breedId: 0,
+      moreInfo: ''
+    };
+  }
+
+
+  ngOnInit() {
+    this.appUserService.breeds
+          .subscribe(res => {this.breeds = res});
+
+    let id = this.route.snapshot.params['id'] || 0;
+    if (id) {
+      this.animal = this.appUserService.getAnimalById(id);
+     }
+  }
+   setSrc(event: any) {
+    if (event.index == 'new') {
+      this.animal.photos.push(event.href);
+    } else {
+      this.animal.photos[event.index] = event.href;
+    }
+  }
+  findBreedID(name: any): number {
+    return this.breeds.filter(item => item.name === name)[0].id
+  }
+
+  toggle(event: any, value: any): boolean {
+    event.preventDefault();
+    this.animal.name = value.name ? value.name : this.animal.name;
+    this.animal.birthday = value.birthday ? value.birthday : this.animal.birthday;
+    this.animal.gender = value.gender ? value.gender : this.animal.gender;
+    this.animal.titles = value.titles ? [value.titles] : [];
+    this.animal.nursery = value.nursery ? value.nursery : this.animal.nursery;
+    this.animal.readyToCopulation = value.readyToCopulation || false;
+    this.animal.color = value.color ? value.color : this.animal.color;
+    this.animal.breedId = this.findBreedID(value.breedId);
+    this.animal.moreInfo = value.moreInfo ? value.moreInfo : this.animal.moreInfo;
+    this.animal.club = value.club ? value.club : this.animal.club;
+
+    if (this.animal.id) {
+      this.appUserService.updateAnimal(this.animal).subscribe(() => this.router.navigate(['/home']));
+    } else {
+      this.appUserService.createAnimal(this.animal).subscribe(() => this.router.navigate(['/home']));
     }
 
-    setSrc(event: any){
-         if(event.index == this.imageSrc.length-1) {
-             this.animal.image.push(event.href);
-             this.imageSrc.length += 1;
-
-      }  
-        else { 
-            this.animal.image[event.index] = event.href;
-            this.imageSrc[event.index] = event.href;
-        }
-    }
-
-    
-
-    
-    
-    saveAnimal(value: Animal): void {
-
-        this.animal.name = value.name ? value.name : this.animal.name;
-        this.animal.idUser = 1;
-        this.animal.bread = value.bread ? value.bread : this.animal.bread;
-        this.animal.sex = value.sex ? value.sex : this.animal.sex;
-        this.animal.sexWork = value.sexWork;
-        this.animal.color = value.color ? value.color : this.animal.color;
-        this.animal.club = value.club ? value.club : this.animal.club;
-        this.animal.description = value.description ? value.description : this.animal.description;
-        if(this.animal.id) {
-             this.appAnimalService.updateAnimal(this.animal).then(() =>  this.router.navigate(['/home']));
-        } else {
-            this.appAnimalService.createAnimal(this.animal).then(() =>  this.router.navigate(['/home']));
-        }
-        
-    }
-    
-
-    toggle(event: any, value: any ): void{
-        event.preventDefault();
-        this.saveAnimal(value);
-        
-    } 
-
+    return false
+  }
 }
